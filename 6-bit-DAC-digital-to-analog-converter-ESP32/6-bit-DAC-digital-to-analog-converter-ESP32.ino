@@ -1,16 +1,18 @@
-#define 2 potentiometer
-#define 10 LED
-#define 3 D1
-#define 4 D2
-#define 5 D3
-#define 6 D4
-#define 7 D5
-#define 21 D6
+#define potentiometer 2
+#define LED 10
+#define D1 3
+#define D2 4
+#define D3 5
+#define D4 6
+#define D5 7
+#define D6 21
 
 unsigned long LEDtime= 0;
 unsigned long analogConversion= 0;
 int rawAnalogValue= 0;
 int sixBitValue= 0;
+int bitValue= 0;
+const int bitPins[] = {D1, D2, D3, D4, D5, D6};
 
 void setup() {
   // put your setup code here, to run once:
@@ -39,8 +41,8 @@ void loop() {
 
     // Output each bit to the LEDs
     for (int i = 0; i < 6; i++) {
-      int bitValue = (sixBitValue >> i) & 1;
+      bitValue = (sixBitValue >> i) & 1;
       digitalWrite(bitPins[i], bitValue);
     }
-
+  }
 }
